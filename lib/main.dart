@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:games_alarm_flutter_app/features/home/view.dart';
+import 'package:games_alarm_flutter_app/theme/theme.dart';
 
 void main() {
   runApp(const GamesAlarmApp());
@@ -17,10 +18,9 @@ class _GamesAlarmAppState extends State<GamesAlarmApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.system,
       home: const HomePage(title: 'Flutter Demo Home Page'),
     );
   }
