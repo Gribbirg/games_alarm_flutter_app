@@ -25,12 +25,11 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           body: child,
           appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: const Text("РазБудильник"),
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: tabsRouter.activeIndex,
-            onTap: (index) => _openPage(tabsRouter, index),
+            onTap: (index) => tabsRouter.setActiveIndex(index),
             items: const [
               BottomNavigationBarItem(
                   icon: Icon(Icons.alarm), label: "Будильники"),
@@ -45,9 +44,5 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
-  }
-
-  void _openPage(TabsRouter tabsRouter, int index) {
-    tabsRouter.setActiveIndex(index);
   }
 }

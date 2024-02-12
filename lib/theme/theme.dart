@@ -11,5 +11,9 @@ ThemeData getTheme({darkMode = false}) {
         selectedItemColor: colorTheme.primary,
         backgroundColor: colorTheme.primaryContainer,
         unselectedItemColor: colorTheme.secondary,
-      ));
+      ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: colorTheme.surface,
+    ),
+  );
 }
