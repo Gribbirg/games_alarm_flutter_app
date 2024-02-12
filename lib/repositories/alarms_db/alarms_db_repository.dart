@@ -10,7 +10,7 @@ class AlarmsDBRepository implements AbstractAlarmsDBRepository {
   AlarmsDBRepository(this.box);
 
   @override
-  Future<AlarmsWeek> getAlarmsWeek({int weekShift = 0}) async {
+  Future<AlarmsWeek> getAlarmsWeek() async {
     log('Read data from db: ${box.values.toList().firstOrNull ?? AlarmsWeek.empty()}');
     return box.values.toList().firstOrNull ?? AlarmsWeek.empty();
   }

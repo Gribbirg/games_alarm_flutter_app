@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:games_alarm_flutter_app/features/alarms_list/widgets/widgets.dart';
 import 'package:games_alarm_flutter_app/repositories/alarms_db/alarms_db.dart';
 import 'package:get_it/get_it.dart';
 
