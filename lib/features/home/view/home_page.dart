@@ -1,57 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:games_alarm_flutter_app/router/router.dart';
 
+@RoutePage()
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  int _openedPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.alarm), label: "Будильники"),
-          BottomNavigationBarItem(icon: Icon(Icons.emoji_events), label: "Рекорды"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Профиль"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Настройки"),
-        ],
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+    return AutoTabsRouter(
+      routes: [
+        AlarmsListRoute(title: 'AlarmsList'),
+        RecordsRoute(title: 'Records'),
+        ProfileRoute(title: 'Profile'),
+        SettingsRoute(title: 'Settings'),
+      ],
+      builder: (context, child) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        return Scaffold(
+          body: child,
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: const Text("РазБудильник"),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: (index) => _openPage(tabsRouter, index),
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.alarm), label: "Будильники"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.emoji_events), label: "Рекорды"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), label: "Профиль"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.settings), label: "Настройки"),
+            ],
+          ),
+        );
+      },
     );
+  }
+
+  void _openPage(TabsRouter tabsRouter, int index) {
+    setState(() {
+      _openedPageIndex = index;
+    });
+    tabsRouter.setActiveIndex(index);
   }
 }
