@@ -18,8 +18,8 @@ class _GamesAlarmAppState extends State<GamesAlarmApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: lightTheme,
-      darkTheme: darkTheme,
+      theme: getTheme(),
+      darkTheme: getTheme(darkMode: true),
       themeMode: ThemeMode.system,
       home: const HomePage(title: 'Flutter Demo Home Page'),
     );
