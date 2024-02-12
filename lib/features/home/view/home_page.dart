@@ -24,20 +24,18 @@ class _HomePageState extends State<HomePage> {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
           body: child,
-          appBar: AppBar(
-            title: const Text("РазБудильник"),
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: (index) => tabsRouter.setActiveIndex(index),
-            items: const [
-              BottomNavigationBarItem(
+          bottomNavigationBar: NavigationBar(
+            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+            selectedIndex: tabsRouter.activeIndex,
+            onDestinationSelected: (index) => tabsRouter.setActiveIndex(index),
+            destinations: const [
+              NavigationDestination(
                   icon: Icon(Icons.alarm), label: "Будильники"),
-              BottomNavigationBarItem(
+              NavigationDestination(
                   icon: Icon(Icons.emoji_events), label: "Рекорды"),
-              BottomNavigationBarItem(
+              NavigationDestination(
                   icon: Icon(Icons.person), label: "Профиль"),
-              BottomNavigationBarItem(
+              NavigationDestination(
                   icon: Icon(Icons.settings), label: "Настройки"),
             ],
           ),
