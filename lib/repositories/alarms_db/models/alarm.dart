@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'models.dart';
@@ -5,29 +6,29 @@ import 'models.dart';
 part 'alarm.g.dart';
 
 @HiveType(typeId: 1)
-class Alarm {
+class Alarm extends Equatable {
   @HiveField(0)
   final int id;
 
   @HiveField(1)
-  String name;
+  final String name;
 
   @HiveField(2)
-  int hour;
+  final int hour;
 
   @HiveField(3)
-  int minute;
+  final int minute;
 
   @HiveField(4)
-  List<AlarmResult> results;
+  final List<AlarmResult> results;
 
   @HiveField(5)
-  bool vibration;
+  final bool vibration;
 
   @HiveField(6)
-  bool on;
+  final bool on;
 
-  Alarm(
+  const Alarm(
       {this.id = 0,
       required this.name,
       required this.hour,
@@ -40,4 +41,7 @@ class Alarm {
   String toString() {
     return 'Alarm{id: $id, name: $name, hour: $hour, minute: $minute, results: $results, vibration: $vibration, on: $on}';
   }
+
+  @override
+  List<Object?> get props => [id, name, hour, minute, results, vibration, on];
 }
