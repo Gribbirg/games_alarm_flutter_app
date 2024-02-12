@@ -6,12 +6,12 @@ part 'alarm_result.g.dart';
 @HiveType(typeId: 3)
 class AlarmResult extends Equatable {
   @HiveField(0)
-  int time;
+  final int time;
 
   @HiveField(1)
-  int score;
+  final int score;
 
-  AlarmResult({required this.time, required this.score});
+  const AlarmResult({required this.time, required this.score});
 
   @override
   String toString() {
