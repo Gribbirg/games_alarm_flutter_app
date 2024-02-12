@@ -1,6 +1,6 @@
 import 'models/models.dart';
 
 abstract class AbstractAlarmsDBRepository {
-  Future<AlarmsWeek> getAlarmsWeek();
-  Future<void> setAlarmsWeek(AlarmsWeek alarmsWeek);
+  Future<List<Alarm>> getAlarmsList();
+  Future<void> setAlarmsList(List<Alarm> alarmList);
 }

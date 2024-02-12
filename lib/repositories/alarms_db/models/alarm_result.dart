@@ -11,13 +11,17 @@ class AlarmResult extends Equatable {
   @HiveField(1)
   final int score;
 
-  const AlarmResult({required this.time, required this.score});
+  @HiveField(2)
+  final DateTime dateTime;
+
+  const AlarmResult(
+      {required this.time, required this.score, required this.dateTime});
 
   @override
   String toString() {
-    return 'AlarmResult{time: $time, score: $score}';
+    return 'AlarmResult{dateTime: $dateTime}';
   }
 
   @override
-  List<Object?> get props => [time, score];
+  List<Object?> get props => [time, score, dateTime];
 }

@@ -12,10 +12,9 @@ void main() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(AlarmAdapter());
-  Hive.registerAdapter(AlarmsWeekAdapter());
   Hive.registerAdapter(AlarmResultAdapter());
 
-  final alarmsBox = await Hive.openBox<AlarmsWeek>('alarms_box');
+  final alarmsBox = await Hive.openBox<Alarm>('alarms_box');
 
   GetIt.I.registerLazySingleton<AbstractAlarmsDBRepository>(() => AlarmsDBRepository(alarmsBox));
   GetIt.I.registerLazySingleton<AbstractDateTimeRepository>(() => DateTimeRepository());

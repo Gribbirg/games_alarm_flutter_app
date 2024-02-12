@@ -19,17 +19,20 @@ class AlarmResultAdapter extends TypeAdapter<AlarmResult> {
     return AlarmResult(
       time: fields[0] as int,
       score: fields[1] as int,
+      dateTime: fields[2] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, AlarmResult obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.time)
       ..writeByte(1)
-      ..write(obj.score);
+      ..write(obj.score)
+      ..writeByte(2)
+      ..write(obj.dateTime);
   }
 
   @override

@@ -18,7 +18,7 @@ class AlarmsListBlock extends Bloc<AlarmsListEvent, AlarmsListState> {
       LoadAlarmsList event, Emitter<AlarmsListState> emit) async {
     try {
       emit(AlarmsListLoading());
-      final alarmsWeek = await alarmsDbRepository.getAlarmsWeek();
+      final alarmsWeek = await alarmsDbRepository.getAlarmsList();
       emit(AlarmsListLoaded(alarmsWeek));
     } catch (e) {
       emit(AlarmsListFailure(e));
@@ -27,6 +27,7 @@ class AlarmsListBlock extends Bloc<AlarmsListEvent, AlarmsListState> {
 
   Future<void> _write(
       WriteAlarmsList event, Emitter<AlarmsListState> emit) async {
-    alarmsDbRepository.setAlarmsWeek(event.alarmsWeek);
+    alarmsDbRepository.setAlarmsList(event.alarmsList);
+    _load(LoadAlarmsList(), emit);
   }
 }

@@ -7,41 +7,42 @@ part 'alarm.g.dart';
 
 @HiveType(typeId: 1)
 class Alarm extends Equatable {
-  @HiveField(0)
-  final int id;
-
   @HiveField(1)
   final String name;
 
   @HiveField(2)
-  final int hour;
+  final int dayOfWeek;
 
   @HiveField(3)
-  final int minute;
+  final int hour;
 
   @HiveField(4)
-  final List<AlarmResult> results;
-
-  @HiveField(5)
-  final bool vibration;
+  final int minute;
 
   @HiveField(6)
+  final bool vibration;
+
+  @HiveField(7)
   final bool on;
 
-  const Alarm(
-      {this.id = 0,
-      required this.name,
-      required this.hour,
-      required this.minute,
-      required this.results,
-      required this.vibration,
-      required this.on});
+  @HiveField(8)
+  final List<AlarmResult> results;
+
+  const Alarm({
+    required this.name,
+    required this.dayOfWeek,
+    required this.hour,
+    required this.results,
+    required this.vibration,
+    required this.on,
+    required this.minute,
+  });
 
   @override
   String toString() {
-    return 'Alarm{id: $id, name: $name, hour: $hour, minute: $minute, results: $results, vibration: $vibration, on: $on}';
+    return 'Alarm{name: $name, dayOfWeek: $dayOfWeek, hour: $hour, minute: $minute, vibration: $vibration, on: $on, results: $results}';
   }
 
   @override
-  List<Object?> get props => [id, name, hour, minute, results, vibration, on];
+  List<Object?> get props => [name, dayOfWeek, hour, minute, results, vibration, on];
 }

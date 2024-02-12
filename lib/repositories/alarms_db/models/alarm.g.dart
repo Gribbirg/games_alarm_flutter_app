@@ -17,13 +17,13 @@ class AlarmAdapter extends TypeAdapter<Alarm> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Alarm(
-      id: fields[0] as int,
       name: fields[1] as String,
-      hour: fields[2] as int,
-      minute: fields[3] as int,
-      results: (fields[4] as List).cast<AlarmResult>(),
-      vibration: fields[5] as bool,
-      on: fields[6] as bool,
+      dayOfWeek: fields[2] as int,
+      hour: fields[3] as int,
+      results: (fields[8] as List).cast<AlarmResult>(),
+      vibration: fields[6] as bool,
+      on: fields[7] as bool,
+      minute: fields[4] as int,
     );
   }
 
@@ -31,20 +31,20 @@ class AlarmAdapter extends TypeAdapter<Alarm> {
   void write(BinaryWriter writer, Alarm obj) {
     writer
       ..writeByte(7)
-      ..writeByte(0)
-      ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.hour)
+      ..write(obj.dayOfWeek)
       ..writeByte(3)
-      ..write(obj.minute)
+      ..write(obj.hour)
       ..writeByte(4)
-      ..write(obj.results)
-      ..writeByte(5)
-      ..write(obj.vibration)
+      ..write(obj.minute)
       ..writeByte(6)
-      ..write(obj.on);
+      ..write(obj.vibration)
+      ..writeByte(7)
+      ..write(obj.on)
+      ..writeByte(8)
+      ..write(obj.results);
   }
 
   @override

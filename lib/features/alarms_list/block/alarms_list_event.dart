@@ -9,9 +9,9 @@ class LoadAlarmsList extends AlarmsListEvent {
 
 class WriteAlarmsList extends AlarmsListEvent {
 
-  final AlarmsWeek alarmsWeek;
+  final List<Alarm> alarmsList;
 
-  WriteAlarmsList(this.alarmsWeek);
+  WriteAlarmsList(this.alarmsList);
 
   @override
   List<Object?> get props => [];

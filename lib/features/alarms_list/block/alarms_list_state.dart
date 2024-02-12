@@ -13,11 +13,11 @@ class AlarmsListLoading extends AlarmsListState {
 }
 
 class AlarmsListLoaded extends AlarmsListState {
-  final AlarmsWeek alarmsWeek;
-  AlarmsListLoaded(this.alarmsWeek);
+  final List<Alarm> alarmsList;
+  AlarmsListLoaded(this.alarmsList);
 
   @override
-  List<Object?> get props => [alarmsWeek];
+  List<Object?> get props => [alarmsList];
 }
 
 class AlarmsListFailure extends AlarmsListState {
