@@ -14,8 +14,11 @@ class AlarmsListPage extends StatefulWidget {
 class _AlarmsListPageState extends State<AlarmsListPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Будильники'),
+      ),
+      body: const Center(
         child: Text("Alarms list page"),
       ),
     );

@@ -14,8 +14,11 @@ class RecordsPage extends StatefulWidget {
 class _RecordsPageState extends State<RecordsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Результаты'),
+      ),
+      body: const Center(
         child: Text("Records page"),
       ),
     );

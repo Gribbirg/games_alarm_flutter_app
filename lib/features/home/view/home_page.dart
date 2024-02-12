@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
               NavigationDestination(
                   icon: Icon(Icons.alarm), label: "Будильники"),
               NavigationDestination(
-                  icon: Icon(Icons.emoji_events), label: "Рекорды"),
+                  icon: Icon(Icons.emoji_events), label: "Результаты"),
               NavigationDestination(
                   icon: Icon(Icons.person), label: "Профиль"),
               NavigationDestination(
