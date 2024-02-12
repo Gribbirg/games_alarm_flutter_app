@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:games_alarm_flutter_app/features/home/view.dart';
 import 'package:games_alarm_flutter_app/router/router.dart';
 import 'package:games_alarm_flutter_app/theme/theme.dart';
 
