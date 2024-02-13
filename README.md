@@ -1,4 +1,9 @@
-# games_alarm_flutter_app
+# РазБудильник: переработка на Flutter
+
+Пробный проект для Fluter: версия "РазБудильника".<br>
+*Проект находится на начальной стадии разработки.*
+
+# Games alarm app based on flutter
 
 Alarm with games.
 
