@@ -20,6 +20,15 @@ class AlarmsListLoaded extends AlarmsListState {
   List<Object?> get props => [alarmsList];
 }
 
+class AlarmsMapLoaded extends AlarmsListState {
+  final Map<int, Alarm> alarmsMap;
+
+  AlarmsMapLoaded(this.alarmsMap);
+
+  @override
+  List<Object?> get props => [alarmsMap];
+}
+
 class AlarmsListFailure extends AlarmsListState {
 
   final Object? exception;

@@ -7,11 +7,24 @@ class LoadAlarmsList extends AlarmsListEvent {
   List<Object?> get props => [];
 }
 
-class WriteAlarmsList extends AlarmsListEvent {
+class LoadAlarmsMap extends AlarmsListEvent {
+  @override
+  List<Object?> get props => [];
+}
 
+class WriteAlarmsList extends AlarmsListEvent {
   final List<Alarm> alarmsList;
 
   WriteAlarmsList(this.alarmsList);
+
+  @override
+  List<Object?> get props => [];
+}
+
+class DeleteAlarmEvent extends AlarmsListEvent {
+  final int alarmId;
+
+  DeleteAlarmEvent(this.alarmId);
 
   @override
   List<Object?> get props => [];

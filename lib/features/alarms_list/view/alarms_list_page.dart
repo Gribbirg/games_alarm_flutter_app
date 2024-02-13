@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +37,7 @@ class _AlarmsListPageState extends State<AlarmsListPage> {
                   _alarmsListBlock.add(WriteAlarmsList(List.generate(
                     7,
                     (index) => Alarm(
-                        name: 'Будильник ${8 - index}',
+                        name: 'Будильник $index  ${Random().nextInt(10)}',
                         dayOfWeek: index,
                         hour: 8,
                         minute: 30,
@@ -49,27 +52,33 @@ class _AlarmsListPageState extends State<AlarmsListPage> {
                 child: const Text('add')),
             ElevatedButton(
                 onPressed: () async {
-                  _alarmsListBlock.add(LoadAlarmsList());
+                  _alarmsListBlock.add(LoadAlarmsMap());
                 },
                 child: const Text('get')),
           ]),
-          BlocBuilder<AlarmsListBlock, AlarmsListState>(
-              bloc: _alarmsListBlock,
-              builder: (context, state) {
-                if (state is AlarmsListLoaded) {
-                  return Expanded(
-                      child: PageView(
-                    controller: PageController(),
-                    children: _getAlarmsListView(state.alarmsList),
-                  ));
-                }
-                if (state is AlarmsListFailure) {
-                  return const Text('Fail!');
-                }
-                return const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [CircularProgressIndicator()]);
-              }),
+          Expanded(
+            child: BlocBuilder<AlarmsListBlock, AlarmsListState>(
+                bloc: _alarmsListBlock,
+                builder: (context, state) {
+                  if (state is AlarmsListLoaded) {
+                    return PageView(
+                                          controller: PageController(),
+                                          children: _getAlarmsListView(state.alarmsList),
+                                        );
+                  }
+                  if (state is AlarmsMapLoaded) {
+                    return PageView(
+                                          controller: PageController(),
+                                          children: _getAlarmsListViewFromMap(state.alarmsMap),
+                                        );
+                  }
+                  if (state is AlarmsListFailure) {
+                    return const Center(child: Text('Fail!'));
+                  }
+                  return const Center(
+                      child: CircularProgressIndicator());
+                }),
+          ),
         ],
       ),
     );
@@ -89,6 +98,30 @@ class _AlarmsListPageState extends State<AlarmsListPage> {
         ),
       ));
     }
+    return res;
+  }
+
+  List<ListView> _getAlarmsListViewFromMap(Map<int, Alarm> alarmsMap) {
+    var res = <ListView>[];
+    var alarms = List.generate(7, (index) => <int, Alarm>{});
+    alarmsMap.forEach((key, alarm) {
+      alarms[alarm.dayOfWeek][key] = alarm;
+    });
+
+    for (int i = 0; i < 7; i++) {
+      final entries = alarms[i].entries.toList();
+
+      res.add(ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: alarms[i].length,
+        itemBuilder: (context, j) => AlarmCard(
+          id: entries[j].key,
+          alarm: entries[j].value,
+          block: _alarmsListBlock,
+        ),
+      ));
+    }
+
     return res;
   }
 }
